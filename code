@@ -1,0 +1,66 @@
+#include <conio.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
+#include <math.h>
+#include <Windows.h>
+
+int main()
+{
+
+    int var;
+    double X, X1, X2, delta, Y, Z;
+    unsigned int N;
+    setlocale(LC_ALL, "Ukrainian");
+
+        printf("\t   X1=\t"); scanf("%lf", &X1);
+        printf("\t   X2=\t"); scanf("%lf", &X2);
+        do
+        {
+         printf("\n\t\t var 1 - через к-ть точок N");
+         printf("\n\t\t var 2 - через крок delta");
+         printf("\n\t   Оберiть спосiб розв'язання:\t"); scanf("%d", &var);
+        }
+        while(var!=1&&var!=2);
+
+         switch(var)
+         {
+         case 1:
+            {
+                printf("\n\t   Введiть к-ть точок\t"); scanf("%u", &N);
+                delta = (X2-X1)/(N-1);
+            } break;
+         case 2:
+            {
+                printf("\n\t   Введiть крок\t"); scanf("%lf", &delta);
+                N = (X2-X1)/delta+1;
+            } break;
+         }
+
+        system("cls");
+
+
+        printf("\n\n\t+=====================================================+\n");
+        printf("\t|  №  |          x          |        f(x)=sqrt(x)     |\n");
+        printf("\t+=====================================================+\n");
+
+
+    for(int i = 0; i < N; i++)
+    {
+        X = X1+delta*i;
+        Y = sqrt(X);
+        printf("\t|%5d|%21f|%25f|\n", i+1, X, Y);
+        printf("\t+-----+---------------------+-------------------------+\n");
+
+        {
+        if(N > 10)
+            if((i+1)% 10 == 0)
+            if (i+1 == 10) {printf("\tНатиснiть на будь-яку клавiшу для продовження");
+            getch();
+            printf("\r");}
+              else getch();
+        }
+    }
+    getch();
+    return 0;
+}
